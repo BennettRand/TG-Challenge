@@ -3,13 +3,16 @@ import logging
 from .garden import Garden
 from.bunny import Bunny
 
+logger = logging.getLogger(__name__)
+
 
 def eat(garden):
     garden = Garden.from_matrix(garden)
     bunny = Bunny(garden)
 
-    bunny.step()
-    bunny.step()
+    bunny.run()
+
+    return bunny.stomach
 
 
 def main():
@@ -18,7 +21,7 @@ def main():
                [4, 6, 3, 4, 9],
                [3, 1, 0, 5, 8]]
 
-    eat(garden1)
+    logger.info('Bunny ate %s carrots from garden1.', eat(garden1))
 
     return
 

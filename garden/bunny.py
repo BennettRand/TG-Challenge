@@ -25,7 +25,8 @@ class Bunny(object):
         elif self.state is self.MOVING:
             candidates = [self.pos.left, self.pos.right,
                           self.pos.up, self.pos.down]
-            candidates = [c for c in candidates if c.carrots > 0]
+            candidates = [c for c in candidates if
+                          c is not None and c.carrots > 0]
 
             if len(candidates) <= 0:
                 logger.info('No more carrots. Going to sleep.')
@@ -44,3 +45,7 @@ class Bunny(object):
 
         else:
             logger.error("Invalid State")
+
+    def run(self):
+        while self.state is not self.SLEEPING:
+            self.step()
