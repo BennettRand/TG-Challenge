@@ -1,13 +1,14 @@
 import logging
 
 from .garden import Garden
+from.bunny import Bunny
 
 
 def eat(garden):
     garden = Garden.from_matrix(garden)
+    bunny = Bunny(garden)
 
-    logging.debug(garden.center.loc)
-    logging.debug(garden.center.carrots)
+    bunny.step()
 
 
 def main():
