@@ -4,6 +4,9 @@ logger = logging.getLogger(__name__)
 
 
 class Garden(object):
+    """
+    A class to rrepresent the whole garden as a matrix of cells.
+    """
     def __init__(self, w, h):
         self.w = w
         self.h = h
@@ -34,16 +37,22 @@ class Garden(object):
 
     @property
     def center(self):
-        cyl = (len(self.cells) - 1) / 2
+        """
+        Find and return the center cell.
+        """
+        cyl = (len(self.cells) - 1) / 2  # Lower and upper bound of list slices
         cxl = (len(self.cells[0]) - 1) / 2
         cyu = len(self.cells) / 2 + 1
         cxu = len(self.cells[0]) / 2 + 1
 
+        # candidates are all the cells in the middle,
+        # accounting for even dimensions
         candidates = []
 
         for r in self.cells[cyl:cyu]:
             candidates += r[cxl:cxu]
 
+        # center is the candidate with the most carrots
         center = max(candidates, key=lambda c: c.carrots)
 
         return center
@@ -57,10 +66,16 @@ class Cell(object):
 
     @property
     def left(self):
+        """
+        Returns the adjacent cell in the parent garden.
+        Returns None if out-of-bounds.
+
+        left, right, up, and down follow the same pattern.
+        """
         x, y = (self.loc[0] - 1, self.loc[1])
 
         if x < 0:
-            return None
+            return None  # None
 
         return self.garden.cells[y][x]
 
