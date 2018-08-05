@@ -6,11 +6,8 @@ from .garden import Garden
 def eat(garden):
     garden = Garden.from_matrix(garden)
 
-    logging.debug(garden.cells[0][0].loc)
-    logging.debug(garden.cells[0][0].left)
-    logging.debug(garden.cells[0][0].right.loc)
-    logging.debug(garden.cells[0][0].up)
-    logging.debug(garden.cells[0][0].down.loc)
+    logging.debug(garden.center.loc)
+    logging.debug(garden.center.carrots)
 
 
 def main():

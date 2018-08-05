@@ -32,6 +32,22 @@ class Garden(object):
 
         return garden
 
+    @property
+    def center(self):
+        cyl = (len(self.cells) - 1) / 2
+        cxl = (len(self.cells[0]) - 1) / 2
+        cyu = len(self.cells) / 2 + 1
+        cxu = len(self.cells[0]) / 2 + 1
+
+        candidates = []
+
+        for r in self.cells[cyl:cyu]:
+            candidates += r[cxl:cxu]
+
+        center = max(candidates, key=lambda c: c.carrots)
+
+        return center
+
 
 class Cell(object):
     def __init__(self, carrots, garden, loc):
