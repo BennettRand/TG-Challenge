@@ -1,18 +1,8 @@
 import logging
 
-from .garden import Garden
-from.bunny import Bunny
+from . import eat
 
 logger = logging.getLogger(__name__)
-
-
-def eat(garden):
-    garden = Garden.from_matrix(garden)
-    bunny = Bunny(garden)
-
-    bunny.run()
-
-    return bunny.stomach
 
 
 def main():
@@ -20,9 +10,9 @@ def main():
                [0, 0, 7, 0, 4],
                [4, 6, 3, 4, 9],
                [3, 1, 0, 5, 8]]
-    garden2 = [[1]]
-    garden3 = [[0]]
-    garden4 = [[1, 1, 1, 1],
+    garden2 = [[1]]  # What happens with one cell?
+    garden3 = [[0]]  # What happens in an empty garden?
+    garden4 = [[1, 1, 1, 1],  # A garden with all equal cells?
                [1, 1, 1, 1],
                [1, 1, 1, 1],
                [1, 1, 1, 1]]
