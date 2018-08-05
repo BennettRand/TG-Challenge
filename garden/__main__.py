@@ -9,6 +9,7 @@ def eat(garden):
     bunny = Bunny(garden)
 
     bunny.step()
+    bunny.step()
 
 
 def main():

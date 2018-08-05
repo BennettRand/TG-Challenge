@@ -23,9 +23,23 @@ class Bunny(object):
             return
 
         elif self.state is self.MOVING:
+            candidates = [self.pos.left, self.pos.right,
+                          self.pos.up, self.pos.down]
+            candidates = [c for c in candidates if c.carrots > 0]
+
+            if len(candidates) <= 0:
+                logger.info('No more carrots. Going to sleep.')
+                self.state = self.SLEEPING
+
+            else:
+                self.pos = max(candidates, key=lambda x: x.carrots)
+                logger.info('See %s carrots at (%s, %s), going there.',
+                            self.pos.carrots, *self.pos.loc)
+                self.state = self.EATING
             return
 
         elif self.state is self.SLEEPING:
+            logger.info('Sleeping.')
             return
 
         else:
